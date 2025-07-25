@@ -1,0 +1,30 @@
+syntax="proto3";
+
+package user;
+
+import "shared_message.proto";
+
+service UserService {
+    rpc getOneUser(GetOneUserRequest) returns (GetOneUserResponse) {};
+}
+
+message User {
+    string id = 1;
+    string fullName = 2;
+    string email = 3;
+    string password = 4;
+    string image = 5 ;
+    repeated shared_message.SPost posts = 6;
+    repeated shared_message.SPost likedPosts = 7;
+    string createdAt = 8;
+    string updatedAt = 9;
+    string deletedAt = 10;
+}
+
+message GetOneUserRequest {
+    string id = 1;
+}
+
+message GetOneUserResponse {
+    User user = 1;
+}
