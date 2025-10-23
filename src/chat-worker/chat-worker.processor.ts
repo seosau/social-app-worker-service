@@ -20,7 +20,7 @@ export class ChatWorkerProcessor extends WorkerHost{
             console.log('Job name is: ', APP_CONFIG.QUEUE_CHAT_NAME_SEND_MESSAGE)
             const user = await this.userGrpc.getOneUser({id: job.data.message.senderId});
             console.log('================= ', user)
-            return this.redisPublisher.publishEvent(job.data.message.senderId, job.data)
+            return this.redisPublisher.publishEvent(job.data.message.senderId, {...job.data, user: user.user})
         }
         return
     }
